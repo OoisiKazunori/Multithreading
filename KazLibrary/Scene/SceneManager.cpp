@@ -180,8 +180,11 @@ void SceneManager::Update()
 				TextureResourceMgr::Instance()->GetLoadCountNum()
 			);
 
+			//パイプラインの生成
 			std::thread th_a(&SceneManager::GeneratePipeline, this);
+			//モデルの読み込み、テクスチャの読み込み
 			std::thread th_b(&SceneManager::AssetLoad, this);
+			//ロード画面の表示
 			std::thread th_c(&SceneManager::LoadScene, this);
 			th_a.join();
 			th_b.join();
